@@ -6,15 +6,21 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './components/auth/auth.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule, 
+    HttpClientModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
