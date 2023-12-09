@@ -8,19 +8,23 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './components/auth/auth.module';
+import { UsersModule } from './components/users/users.module';
+import { RestaurantsModule } from './components/restaurants/restaurants.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,  
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule, 
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    UsersModule,
+    RestaurantsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

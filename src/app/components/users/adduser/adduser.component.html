@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{userInfo ? 'Update' :'Create'}} User</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+      <!-- <span aria-hidden="true">&times;</span> -->
+    </button>
+  </div>
+  <div class="modal-body">
+      <form [formGroup]="userForm" ngNativeValidate  (ngSubmit)="onSubmit()">
+          <div class="modal-body">
+              <div class="form-group col mt-2">
+                  <label>Full Name</label>
+                  <input type="text" class="form-control" name="fullName" formControlName="fullName">
+              </div>
+              <div class="form-group col mt-2">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" formControlName="email">
+             </div>
+             <div class="form-group col mt-2">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" formControlName="password">
+             </div>
+
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light btn-md" data-bs-dismiss="modal" (click)="close()">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-dark btn-md">
+              Save
+            </button>
+        </div> 
+      </form>
+  </div>
