@@ -6,6 +6,9 @@ import { UsersComponent } from './components/users/users.component';
 import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { ViewuserComponent } from './components/users/viewuser/viewuser.component';
 import { RestaurantsComponent } from './components/restaurants/restaurants.component';
+import { AddrestaurantComponent } from './components/restaurants/addrestaurant/addrestaurant.component';
+import { ViewrestaurantComponent } from './components/restaurants/viewrestaurant/viewrestaurant.component';
+import { CategoriesComponent } from './components/restaurants/categories/categories.component';
 
 const routes: Routes = [
 
@@ -19,7 +22,12 @@ const routes: Routes = [
   {path: 'view', component:ViewuserComponent }
 ]},
 { path: 'restaurants', children: [
-  {path: '', component: RestaurantsComponent}
+  {path: '', component: RestaurantsComponent},
+  {path: 'create', component: AddrestaurantComponent},
+  {path: 'update', component: AddrestaurantComponent},
+  {path: 'view', component: ViewrestaurantComponent },
+  {path: 'categories', component: CategoriesComponent}
+
 ]}
 
 

@@ -12,10 +12,12 @@ import { UsersModule } from './components/users/users.module';
 import { RestaurantsModule } from './components/restaurants/restaurants.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent
+    
   ],
   imports: [
     BrowserModule,

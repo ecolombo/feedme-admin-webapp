@@ -26,7 +26,7 @@ export class RestaurantsComponent implements OnInit {
 
   getAllRestaurant() {
     this.restaurantsService.getAll(this.pagable).subscribe((response:any)=> {
-      console.log(response);
+      //console.log(response);
       this.restaurantList = response.data.content;
     })
   }
@@ -43,6 +43,7 @@ export class RestaurantsComponent implements OnInit {
   
   // view image model
   openImageModal(modal: any, imageUrls: string[], thumbnailImageIdx: number) {
+    console.log(imageUrls);
     this.tempImageFiles = [...imageUrls];
     this.thumbnailImageIdx = thumbnailImageIdx;
     this.modalService.open(modal, { 

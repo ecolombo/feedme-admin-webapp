@@ -41,25 +41,15 @@ export class AdduserComponent implements OnInit {
         email: ["", Validators.required],
         password: ["", Validators.required],
         userId: [null],
-        city: [null],
-        state: [null],
-        active: [true],
-        addedOn: [new Date()],
-        contact: [],
-        street: [null],
+        addedOn: [new Date()]
       });
     } else {
       // update
       this.userForm = this.fb.group({
         fullName: [userObj.fullName, Validators.required],
         email: [userObj.email, Validators.required],
-        password: [userObj.password, Validators.required],
-        userId: [userObj.userId],
-        active: [userObj.active],
-        street: [userObj.street],
-        city: [userObj.city],
-        state: [userObj.state],
-        contact: [userObj.contact],
+        password: ["", Validators.required],
+        userId: [userObj.userId]
       });
     }
   }

@@ -9,10 +9,9 @@
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="d-flex justify-content-end align-items-center">
-                                <!--
-                            <a type="button" class="btn btn-dark me-1" [routerLink]="['./', 'categories']">Manage Restaurant
+                            <a type="button" class="btn btn-dark me-1" routerLink="/restaurants/categories">Manage Restaurant
                                 Categories</a>
-                            <button class="btn btn-dark me-1"   (click)="openModal(productModal)">Add Restaurant</button> -->
+                            <button class="btn btn-dark me-1"   (click)="openModal(restaurantModal)">Add Restaurant</button>
                         </div>
                         </div>
                     </div>
@@ -25,6 +24,7 @@
                                 <th scope="col">Sr. No</th>
                                 <th scope="col">Restaurant Name</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Description</th>                                
                                 <th scope="col">Actions</th>
                               </tr>
                         </thead>
@@ -33,14 +33,12 @@
                                 <td>{{ idx + 1 }}</td>
                                 <td class="text-wrap">{{ rest?.name}}</td>
                                 <td>{{ rest?.restaurantCategory?.name }}</td>
+                                <td class="text-wrap">{{ rest?.description}}</td>
                                 <td>
-                                    <!--
-                                  <button type="button" class="btn btn-sm btn-dark me-1" (click)="openImageModal(viewImageModal, prod.images, prod.thumbnailImage)" >View Images</button>
-                                  <button type="button" class="btn btn-sm btn-dark me-1" (click)="openViewModal(productViewModal, prod)" >View Details</button>
-                                  <button type="button" class="btn btn-sm btn-dark me-1" (click)="openModal(productModal, prod)" >Update</button>
-                                  <button type="button" class="btn btn-sm btn-danger me-1" (click)="delete(prod?.productId)" >Delete</button>
-                                    -->
-                                  
+                                  <button type="button" class="btn btn-sm btn-dark me-1" (click)="openImageModal(viewImageModal, rest.imageUrls, rest.thumbnailImage)" >View Images</button>
+                                  <button type="button" class="btn btn-sm btn-dark me-1" (click)="openViewModal(restaurantViewModal, rest)" >View Details</button>
+                                  <button type="button" class="btn btn-sm btn-dark me-1" (click)="openModal(restaurantModal, rest)" >Update</button>
+                                  <button type="button" class="btn btn-sm btn-danger me-1" (click)="delete(rest?.restaurantId)" >Delete</button>                                  
                                 </td>
                               </tr>                       
                         </tbody>
@@ -50,17 +48,15 @@
         </div>
     </div>
 </div>
--->
 
-<!-- create / update product-->
-<!--
-<ng-template #productModal let-modal>
-    <app-addproduct [productInfo]="productInfo" (closeModel)="closeModel(productModal)"></app-addproduct>
+<!-- create / update restaurant-->
+
+<ng-template #restaurantModal let-modal>
+    <app-addrestaurant [restaurantInfo]="restaurantInfo" (closeModel)="closeModel(restaurantModal)"></app-addrestaurant>
 </ng-template>
 
-
-<ng-template #productViewModal let-modal>
-    <app-viewproduct [productInfo]="productInfo" (closeModel)="closeModel(productViewModal)"></app-viewproduct>
+<ng-template #restaurantViewModal let-modal>
+    <app-viewrestaurant [restaurantInfo]="restaurantInfo" (closeModel)="closeModel(restaurantViewModal)"></app-viewrestaurant>
 </ng-template>
 
 
@@ -93,4 +89,3 @@
         </div>
       </div>
 </ng-template>
--->
