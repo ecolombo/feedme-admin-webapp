@@ -11,9 +11,10 @@ import { RestaurantCategoriesService } from 'src/app/services/restaurantcategori
 export class AddcategoryComponent implements OnInit {
 
   prodCategoryBool: boolean = true;
-  productCategoryForm:FormGroup = new FormGroup({});
+  restaurantCategoryForm:FormGroup = new FormGroup({});
   loader : boolean = false;
   tempFile: any;
+  imageUrlError: any = '';
 
   @Input()
   public categoryInfo:any;
@@ -33,45 +34,46 @@ export class AddcategoryComponent implements OnInit {
    
   }
 
-  initialForm(productCategoryObj: any = null) {
-    if (productCategoryObj === null) {
-      this.productCategoryForm = this.fb.group({
-        categoryName: ["", Validators.required],
-        categoryDescription: ["", Validators.required],
-        categoryImageUrl: [""],
-        categoryId: [null],
-        active: [true],
+  // COE Attention: use same names as in Webservice, for simple service implementation (pass json)
+
+  initialForm(restaurantCategoryObj: any = null) {
+    if (restaurantCategoryObj === null) {
+      this.restaurantCategoryForm = this.fb.group({
+        name: ["", Validators.required],
+        description: ["", Validators.required],
+        imageURL: [""],
+        restaurantCategoryId: [null],
         addedOn: [],
       });
     } else {
-      this.productCategoryForm = this.fb.group({
-        categoryName: [productCategoryObj.categoryName, Validators.required],
-        categoryDescription: [productCategoryObj.categoryDescription, Validators.required],
-        categoryImageUrl: [productCategoryObj.categoryImageUrl],
-        categoryId: [productCategoryObj.categoryId],
-        active: [productCategoryObj.active],
+      this.restaurantCategoryForm = this.fb.group({
+        name: [restaurantCategoryObj.name, Validators.required],
+        description: [restaurantCategoryObj.description, Validators.required],
+        imageURL: [restaurantCategoryObj.imageURL],
+        restaurantCategoryId: [restaurantCategoryObj.restaurantCategoryId],
       });
     }
   }
 
   onSubmit() {
-    if(this.productCategoryForm.valid) {
-      if(this.productCategoryForm.get('categoryId')?.value) {
+
+    if(this.restaurantCategoryForm.valid) {
+      if(this.restaurantCategoryForm.get('restaurantCategoryId')?.value) {
         this.handleUpdate();
       } else{
         this.handleCreate();
       }
     } else{
-      this.errResponse = "Enable to submit form, Invalid form data";
+      this.errResponse = "Unable to submit form, Invalid form data";
       console.log("Invalid Form");
     }
   }
 
   handleCreate() {
-    this.categoryService.add(this.productCategoryForm.getRawValue()).subscribe((response:any)=>{
+    this.categoryService.add(this.restaurantCategoryForm.getRawValue()).subscribe((response:any)=>{
       // console.log(response);
-      // this.router.navigateByUrl('/users');
-      window.location.href ="/products/restaurantRestaurantCategories";
+      // this.router.navigateByUrl('/restaurants/categories');
+      window.location.href ="/restaurants/categories";
       this.close();
       },error =>{
         this.errResponse = error.error.message;
@@ -79,28 +81,13 @@ export class AddcategoryComponent implements OnInit {
   }
 
   handleUpdate() {
-    this.categoryService.update(this.productCategoryForm.getRawValue()).subscribe((response:any)=>{
+    this.categoryService.update(this.restaurantCategoryForm.getRawValue()).subscribe((response:any)=>{
       // console.log(response);
-      window.location.href ="/products/restaurantRestaurantCategories";
+      window.location.href ="/restaurants/categories";
         this.close();
       },error =>{
         this.errResponse = error.error.message;
       })
-  }
-
-  checkFileType(event: any) {
-    this.tempFile = event.target.files[0];
-    if (
-      this.tempFile.type == "image/png" ||
-      this.tempFile.type == "image/jpeg" ||
-      this.tempFile.type == "image/jpg"
-    ) {
-      // console.log("File Ok");
-    } else {
-      // console.log("File not Ok");
-      this.tempFile = null;
-      // this.toast.show("Only .png/.jpeg/.jpg file format accepted!!");
-    }
   }
 
   close() {

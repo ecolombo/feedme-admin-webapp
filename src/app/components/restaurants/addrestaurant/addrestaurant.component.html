@@ -34,11 +34,30 @@
             <div class="d-flex flex-column">
               <div class="d-flex justify-content-between align-items-center">
                 <h4 class="m-0">Restaurant Images</h4>
-                <input type="file" #file (change)="checkImageFileType($event)" multiple hidden>
-                <button type="button" class="btn btn-sm btn-dark" (click)="file.click()">
-                  Add
-                </button>
+                <button *ngIf="!showImageUrlInput" type="button" class="btn btn-sm btn-dark"  (click)="toggleAddImageURLDialog()">Add</button>
               </div>
+              <div *ngIf="showImageUrlInput" class="row mt-3">
+                <div class="col-12 my-2">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="form-control">
+                      <div class="col-12 my-2">URL of image to add:</div>
+                      <input  type="text" name="newimageurl" formControlName="newimageurl" class="form-control" placeholder="https://www.w3.org/assets/logos/w3c/w3c-no-bars.svg">
+                        <div *ngIf="imageUrlError" class=" form-group col-12 mt-2 alert alert-danger" role="alert">
+                          {{imageUrlError}}
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <div class="col-12 my-2">
+                            <button type="button" class="btn btn-sm btn-dark" (click)="addImageURL()">Add this URL</button>&nbsp;
+                            <button type="button" class="btn btn-sm btn-dark" (click)="toggleAddImageURLDialog()">Cancel</button>
+                          </div>
+                        </div>    
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+      
+
             </div>
             <div class="row mt-2" *ngIf="tempImageFiles.length == 0">
               <div class="col-12" style="height: 40px;">

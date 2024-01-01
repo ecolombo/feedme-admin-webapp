@@ -11,13 +11,15 @@ import { AuthModule } from './components/auth/auth.module';
 import { UsersModule } from './components/users/users.module';
 import { RestaurantsModule } from './components/restaurants/restaurants.module';
 
+import { RouterModule } from '@angular/router';
+import { DishesModule } from './components/dishes/dishes.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
-    
+    NavbarComponent    
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,9 @@ import { RestaurantsModule } from './components/restaurants/restaurants.module';
     HttpClientModule,
     AuthModule,
     UsersModule,
-    RestaurantsModule
+    RestaurantsModule,
+    RouterModule,
+    DishesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

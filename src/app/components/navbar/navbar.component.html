@@ -15,25 +15,19 @@ Test
           </li>
         
 
-           <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLink="/contactus"  routerLinkActive >Contact Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLink="/aboutus"  routerLinkActive>About Us</a>
-          </li> 
-
-          <li class="nav-item" *ngIf="authService.isLoggedIn()">
-            <a class="nav-link" routerLink="/products" role="button" data-bs-toggle="dropdown" aria-expanded="false"  routerLinkActive>
-              Products
-            </a>
-          </li>
+    
 
           <li class="nav-item" *ngIf="authService.isLoggedIn()">
             <a class="nav-link" routerLink="/restaurants" role="button" data-bs-toggle="dropdown" aria-expanded="false"  routerLinkActive>
               Restaurants
             </a>
           </li>
-        
+
+          <li class="nav-item" *ngIf="authService.isLoggedIn()">
+            <a class="nav-link" routerLink="/dishes" role="button" data-bs-toggle="dropdown" aria-expanded="false"  routerLinkActive>
+              Dishes
+            </a>
+          </li>
 
           <li class="nav-item" *ngIf="authService.isLoggedIn()">
             <a class="nav-link" routerLink="/users" role="button" >
@@ -41,10 +35,7 @@ Test
             </a>
 
           </li>
-          <li class="nav-item" *ngIf="authService.isLoggedIn()">
-            <a class="nav-link" aria-current="page" routerLink="/orders"  routerLinkActive>Orders</a>
-          </li>
-
+  
         
         </ul>
 

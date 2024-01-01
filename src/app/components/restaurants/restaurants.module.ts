@@ -6,6 +6,7 @@ import { AddrestaurantComponent } from './addrestaurant/addrestaurant.component'
 import { ViewrestaurantComponent } from './viewrestaurant/viewrestaurant.component';
 import { AddcategoryComponent } from './addcategory/addcategory.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { CategoriesComponent } from './categories/categories.component';
     CategoriesComponent
     ],
   imports: [
-    CommonModule,ReactiveFormsModule, FormsModule
+    CommonModule,ReactiveFormsModule, FormsModule, RouterModule
   ]
 })
 export class RestaurantsModule { }

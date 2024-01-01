@@ -9,8 +9,7 @@
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="d-flex justify-content-end align-items-center">
-                            <a type="button" class="btn btn-dark me-1" routerLink="/restaurants/categories">Manage Restaurant
-                                Categories</a>
+                              <a type="button" class="btn btn-dark me-1" [routerLink]="['./', 'categories']">Manage Restaurant Categories</a>                            
                             <button class="btn btn-dark me-1"   (click)="openModal(restaurantModal)">Add Restaurant</button>
                         </div>
                         </div>
@@ -21,7 +20,6 @@
                     <table class="table table-flush m-0">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Sr. No</th>
                                 <th scope="col">Restaurant Name</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Description</th>                                
@@ -30,7 +28,6 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let rest of restaurantList; index as idx">
-                                <td>{{ idx + 1 }}</td>
                                 <td class="text-wrap">{{ rest?.name}}</td>
                                 <td>{{ rest?.restaurantCategory?.name }}</td>
                                 <td class="text-wrap">{{ rest?.description}}</td>

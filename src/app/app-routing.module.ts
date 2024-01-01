@@ -9,6 +9,8 @@ import { RestaurantsComponent } from './components/restaurants/restaurants.compo
 import { AddrestaurantComponent } from './components/restaurants/addrestaurant/addrestaurant.component';
 import { ViewrestaurantComponent } from './components/restaurants/viewrestaurant/viewrestaurant.component';
 import { CategoriesComponent } from './components/restaurants/categories/categories.component';
+import { DishesComponent } from './components/dishes/dishes.component';
+import { AdddishComponent } from './components/dishes/adddish/adddish.component';
 
 const routes: Routes = [
 
@@ -27,9 +29,12 @@ const routes: Routes = [
   {path: 'update', component: AddrestaurantComponent},
   {path: 'view', component: ViewrestaurantComponent },
   {path: 'categories', component: CategoriesComponent}
-
+]},
+{ path: 'dishes', children: [
+  {path: '', component: DishesComponent},
+  {path: 'create', component: AdddishComponent},
+  {path: 'update', component: AdddishComponent}
 ]}
-
 
 ];
 

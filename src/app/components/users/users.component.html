@@ -19,7 +19,6 @@
                     <table class="table table-flush m-0">
                         <thead class="thead-light">
                           <tr>
-                            <th scope="col">Sr. No</th>
                             <th scope="col">Full Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Added On</th>
@@ -28,7 +27,6 @@
                         </thead>
                         <tbody>
                           <tr *ngFor="let user of usersList ; index as idx">
-                            <th scope="row">{{idx+1}}</th>
                             <td>{{user["fullName"]}}</td>
                             <td>{{user["email"]}}</td>
                             <td>{{user["addedOn"] | date }}</td>

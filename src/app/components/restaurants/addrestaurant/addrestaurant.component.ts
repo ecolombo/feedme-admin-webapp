@@ -13,13 +13,15 @@ import { RestaurantsService } from 'src/app/services/restaurants.service';
 export class AddrestaurantComponent implements OnInit {
 
   restaurantForm: FormGroup = new FormGroup({});
-  restaurantModel: Restaurants | undefined;
+//  restaurantModel: Restaurants | undefined;
   selectedImageIdx: number = 0;
   thumbnailImageIdx: number = 0;
   tempImageFiles: any[] = [];
   doUpdate: boolean = false;
   loader: boolean = false;
   categoryList:any[] =[];
+  showImageUrlInput:boolean = false;
+  imageUrlError:any ='';
   public pageable:Pageable= { page:0, size:50, sort:'restaurantCategoryId', sortOrder:'DESC' };
 
 
@@ -60,6 +62,7 @@ export class AddrestaurantComponent implements OnInit {
         description: [null],
         restaurantCategory: [null],
         addedOn: [new Date()],
+        newimageurl: ''
       });
     } else {
       this.doUpdate = true;
@@ -71,6 +74,7 @@ export class AddrestaurantComponent implements OnInit {
         description: [restaurantObj.description],
         restaurantCategory: [restaurantObj.restaurantCategory],
         addedOn: [restaurantObj.addedOn],
+        newimageurl: ''
       });
       this.onSelectOption(restaurantObj.restaurantCategory);
       this.tempImageFiles = restaurantObj.imageUrls || [];
@@ -102,6 +106,7 @@ export class AddrestaurantComponent implements OnInit {
     })
   }
 
+  // old, remove:
   checkImageFileType(event: any) {
     let fileList: File[] = Object.assign([], event.target.files);
     fileList.forEach((file: any, idx: number) => {
@@ -116,6 +121,32 @@ export class AddrestaurantComponent implements OnInit {
       }
     });
   }
+
+  addImageURL() {
+    var url = this.restaurantForm.get('newimageurl')?.value;
+    console.log("[addImageURL]: Adding URL" + this.restaurantForm.get('newimageurl')?.value);
+    if (this.isValidUrl(url)) {
+      console.log("[addImageURL]: the entered URL seems valid! Adding " + url);
+      this.tempImageFiles.push(this.restaurantForm.get('newimageurl')?.value);
+      this.imageUrlError="";
+      this.restaurantForm.get('newimageurl')?.setValue("");
+      this.toggleAddImageURLDialog();
+    } else {
+      console.log("[addImageURL]: the entered URL seems not valid!");
+      this.imageUrlError="The URL is invalid and can not be added!";
+      
+    }
+  }
+
+	isValidUrl(urlString:any) {
+    var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+    '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+  return !!urlPattern.test(urlString);
+}
 
   compareByCategoryId(category1: restaurantCategory, category2: restaurantCategory) {
     return category1 && category2 && category1.restaurantCategoryId === category2.restaurantCategoryId;
@@ -157,10 +188,15 @@ export class AddrestaurantComponent implements OnInit {
         this.errResponse = error.error.message;
       })
   }
+
+  toggleAddImageURLDialog() {
+    console.log("[toggleAddImageURLDialog]");
+    this.showImageUrlInput = !this.showImageUrlInput; 
+  }
 }
 
 
-
+/**
 export interface Restaurants {
   restaurantId?: string;
   name?: string;
@@ -169,7 +205,7 @@ export interface Restaurants {
   imageUrls?: string[];
   thumbnailImage?: number;
   addedOn?: Date;
-}
+}*/
 
 export interface restaurantCategory {
   restaurantCategoryId?: string;

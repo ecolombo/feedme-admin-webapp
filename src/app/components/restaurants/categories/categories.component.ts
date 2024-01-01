@@ -13,6 +13,7 @@ export class CategoriesComponent implements OnInit {
   public categoriesList:any[] =[];
   public categoryInfo:any;
   public pageable:Pageable= { page:0, size:10, sort:'restaurantCategoryId', sortOrder:'DESC' };
+  public tempImageFile: any = "";
 
   constructor(private categoriesService:RestaurantCategoriesService, private modalService: NgbModal) { }
 
@@ -26,9 +27,9 @@ export class CategoriesComponent implements OnInit {
       this.categoriesList = response.data.content;
     })
   }
-  openProductCategoryDialog(modelRef:any, productCategoryObj = null) {
+  openRestaurantCategoryDialog(modelRef:any, restaurantCategoryObj = null) {
     this.modalService.open(modelRef);
-    this.categoryInfo = productCategoryObj;
+    this.categoryInfo = restaurantCategoryObj;
   }
 
   closeModel(modelRef:any) {
@@ -40,4 +41,19 @@ export class CategoriesComponent implements OnInit {
       this.getAllCategories();
     });
   }
+
+ openImageModal(modal: any, imageURL: string) {
+  console.log(imageURL);
+  this.tempImageFile = imageURL;
+  this.modalService.open(modal, { 
+    size: "xl",
+    scrollable: true 
+  });
+}
+
+// open image
+openImage(url: string) {
+  window.open(url, "_blank")
+}
+
 }

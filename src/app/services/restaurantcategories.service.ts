@@ -25,11 +25,13 @@ export class RestaurantCategoriesService {
 
   /** Add category */
   add(categoryObj:any){
+      console.log("[add]:"+ categoryObj);
       return this.httpClient.post<any>(`${this.CATG_URL}`,categoryObj);
   }
 
   /** Update category */
   update(categoryObj:any){
+    console.log("[update]:"+ categoryObj);
       return this.httpClient.put<any>(`${this.CATG_URL}`,categoryObj);
   }
 
