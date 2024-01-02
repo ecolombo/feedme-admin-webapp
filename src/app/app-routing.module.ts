@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { AuthGuards } from './guards/auth.guard';
 import { UsersComponent } from './components/users/users.component';
 import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { ViewuserComponent } from './components/users/viewuser/viewuser.component';
@@ -24,13 +25,13 @@ const routes: Routes = [
   {path: 'view', component:ViewuserComponent }
 ]},
 { path: 'restaurants', children: [
-  {path: '', component: RestaurantsComponent},
-  {path: 'create', component: AddrestaurantComponent},
-  {path: 'update', component: AddrestaurantComponent},
-  {path: 'view', component: ViewrestaurantComponent },
-  {path: 'categories', component: CategoriesComponent}
+  {path: '', component: RestaurantsComponent, canActivate: [AuthGuards]},
+  {path: 'create', component: AddrestaurantComponent, canActivate: [AuthGuards]},
+  {path: 'update', component: AddrestaurantComponent, canActivate: [AuthGuards]},
+  {path: 'view', component: ViewrestaurantComponent, canActivate: [AuthGuards] },
+  {path: 'categories', component: CategoriesComponent, canActivate: [AuthGuards]}
 ]},
-{ path: 'dishes', children: [
+{ path: 'dishes', canActivate: [AuthGuards], children: [
   {path: '', component: DishesComponent},
   {path: 'create', component: AdddishComponent},
   {path: 'update', component: AdddishComponent}
