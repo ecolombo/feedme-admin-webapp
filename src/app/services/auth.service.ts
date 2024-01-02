@@ -15,8 +15,8 @@ export class AuthService {
     return this.httpClient.post<any[]>(`${environment.apiBaseUrl}/admins/login`, adminObj);
   }
 
-  registerAdmin(userObj:any) {
-    return this.httpClient.post<any[]>(`${environment.apiBaseUrl}/admins`, userObj);
+  registerAdmin(adminObj:any) {
+    return this.httpClient.post<any[]>(`${environment.apiBaseUrl}/admins`, adminObj);
   }  
 
   isLoggedIn():boolean {

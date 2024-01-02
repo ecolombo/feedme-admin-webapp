@@ -19,17 +19,17 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent}
 ]},
-{ path: 'users', children: [
+{ path: 'users', canActivate: [AuthGuards], children: [
   {path: '', component: UsersComponent},
   {path: 'create', component:AdduserComponent },
   {path: 'view', component:ViewuserComponent }
 ]},
-{ path: 'restaurants', children: [
-  {path: '', component: RestaurantsComponent, canActivate: [AuthGuards]},
-  {path: 'create', component: AddrestaurantComponent, canActivate: [AuthGuards]},
-  {path: 'update', component: AddrestaurantComponent, canActivate: [AuthGuards]},
-  {path: 'view', component: ViewrestaurantComponent, canActivate: [AuthGuards] },
-  {path: 'categories', component: CategoriesComponent, canActivate: [AuthGuards]}
+{ path: 'restaurants', canActivate: [AuthGuards], children: [
+  {path: '', component: RestaurantsComponent},
+  {path: 'create', component: AddrestaurantComponent},
+  {path: 'update', component: AddrestaurantComponent},
+  {path: 'view', component: ViewrestaurantComponent},
+  {path: 'categories', component: CategoriesComponent}
 ]},
 { path: 'dishes', canActivate: [AuthGuards], children: [
   {path: '', component: DishesComponent},
