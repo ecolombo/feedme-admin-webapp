@@ -9,5 +9,5 @@ RUN npm run build --production
 # Serve Application using Nginx Server
 FROM nginx:latest AS ngi
 COPY ./nginx.conf  /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist/cabmanager-webapp/ /usr/share/nginx/html
+COPY --from=build /app/dist/feedme-admin-webapp/ /usr/share/nginx/html
 EXPOSE 81
